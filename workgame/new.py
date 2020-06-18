@@ -151,7 +151,7 @@ def main():
                     y1 += 10
                     x2 += -10
                     y2 += -10                
-                    for i in range(4):
+                    for i in range(3):
                         win.fill((255, 255, 255))
                         win.blit(blackbear1, (x4, y4))
                         win.blit(dessert[i], dessert_xy[i])
