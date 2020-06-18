@@ -31,6 +31,7 @@ def main():
   x1 = 50
   y1 = 500
   win.blit(blackbear1, (x1, y1))
+
   
   ice = pygame.image.load("resources/png/ice.png")  
   ice.convert() 
