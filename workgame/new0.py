@@ -5,21 +5,37 @@ from pygame.locals import *
 
 
 
-def check_rect_collide0(rect_blackbear1, dessert_box):
-    if (rect_blackbear1.bottom > dessert_box.top and 
-        rect_blackbear1.top < dessert_box.bottom and 
-        rect_blackbear1.right > dessert_box.left and 
-        rect_blackbear1.left < dessert_box.right):
-        return deadthing1 + 1 and dessert.remove(dessert[i])
+def check_rect_collide0(rect_blackbear1, rect_ice):
+    if (rect_blackbear1.bottom > rect_ice.top and 
+        rect_blackbear1.top < rect_ice.bottom and 
+        rect_blackbear1.right > rect_ice.left and 
+        rect_blackbear1.left < rect_ice.right):
+        return deadthing1+1 and dessert.remove(ice)
+    return null
+    
+def check_rect_collide1(rect_blackbear1, rect_donuts):
+    if (rect_blackbear1.bottom > rect_donuts.top and 
+        rect_blackbear1.top < rect_donuts.bottom and 
+        rect_blackbear1.right > rect_donuts.left and 
+        rect_blackbear1.left < rect_donuts.right):
+        return deadthing1+1 and dessert.remove(donuts)
     return null
 
-def check_rect_collide1(rect_blackbear2, dessert_box):
-    if (rect_blackbear2.bottom > dessert_box.top and 
-        rect_blackbear2.top < dessert_box.bottom and 
-        rect_blackbear2.right > dessert_box.left and 
-        rect_blackbear2.left < dessert_box.right):
-        return deadthing2 + 1 and dessert.remove(dessert[3])
+def check_rect_collide2(rect_blackbear1, rect_macaron):
+    if (rect_blackbear1.bottom > rect_macaron.top and 
+        rect_blackbear1.top < rect_macaron.bottom and 
+        rect_blackbear1.right > rect_macaron.left and 
+        rect_blackbear1.left < rect_macaron.right):
+        return deadthing1+1 and dessert.remove(macaron)
     return null
+
+def check_rect_collide3(rect_blackbear2, rect_cake):
+    if (rect_blackbear2.bottom > rect_cake.top and 
+        rect_blackbear2.top < rect_cake.bottom and 
+        rect_blackbear2.right > rect_cake.left and 
+        rect_blackbear2.left < rect_cake.right):
+        return deadthing2+1 and dessert.remove(cake)
+    return null  
 
 def main():
     pygame.init()
@@ -45,7 +61,31 @@ def main():
     deadthing2 = 0
     End = False
     end = 0
-  
+    
+    ice = pygame.image.load("resources/png/ice.png")
+    ice.convert()
+    rect_ice = ice.get_rect()
+    x0 = 50 
+    y0 = 50
+    
+    donuts = pygame.image.load("resources/png/donuts.png")
+    donuts.convert()
+    rect_donuts = donuts.get_rect()
+    x1 = 700
+    y1 = 50
+    
+    macaron = pygame.image.load("resources/png/macaron.png")
+    macaron.convert()
+    rect_macaron = macaron.get_rect()
+    x2 = 700
+    y2 = 500
+    
+    cake = pygame.image.load("resources/png/cake.png")
+    cake.convert()
+    rect_cake = cake.get_rect()
+    x3 = 700
+    y3 = 50
+    
     blackbear1 = pygame.image.load("resources/png/blackbear1.png")
     blackbear1.convert()
     rect_blackbear1 = blackbear1.get_rect()
@@ -58,25 +98,6 @@ def main():
     x5 = 50
     y5 = 500
     
-    dessert = []
-    dessert_box = []
-    dessert_name = ["resources/png/ice.png", "resources/png/donuts.png", "resources/png/macaron.png", "resources/png/cake.png"]
-    dessert_xy = [(x0,y0), (x1,y1), (x2,y2), (x3,y3)]
-    x0 = 50 
-    y0 = 50
-    x1 = 700
-    y1 = 50
-    x2 = 700
-    y2 = 500
-    x3 = 700
-    y3 = 50
-    
-    for i in range(4):
-        dessert.append(pygame.image.load(dessert_name[i]))
-        dessert_box.append(dessert[i].get_rect())
-        dessert_xy[i] = dessert[i]
-        dessert[i].convert()
-    
     end1 = pygame.image.load("resources/png/yes.png")
     end1.convert()
     x6 = 100
@@ -87,13 +108,7 @@ def main():
     x7 = 100
     y7 = 150
     
-    if round == 2:
-        if life2 == True:
-            win.fill((255, 255, 255))   
-            round_surface = head_font.render('Round2', True, (0, 0, 0))  
-            win.blit(round_surface, (300, 100))   
-            pygame.display.update()  
-            pygame.time.wait(1000)
+            
     
     while True:
         for event in pygame.event.get():
@@ -139,15 +154,18 @@ def main():
                     y1 += 10
                     x2 += -10
                     y2 += -10                
-                    for i in range(3):
-                        win.fill((255, 255, 255))
-                        win.blit(blackbear1, (x4, y4))
-                        win.blit(dessert[i], dessert_xy[i])
-                        pygame.display.update()
-                        pygame.time.wait(500)
-                    check_rect_collide0(rect_blackbear1, dessert_box[0])
-                    check_rect_collide0(rect_blackbear1, dessert_box[1])
-                    check_rect_collide0(rect_blackbear1, dessert_box[2])                    
+                    
+                    win.fill((255, 255, 255))
+                    win.blit(blackbear1, (x4, y4))
+                    win.blit(ice, (x0, y0))
+                    win.blit(donuts, (x1, y1))
+                    win.blit(macaron, (x2, y2))
+                    pygame.display.update()
+                    pygame.time.wait(500)
+                    check_rect_collide0(rect_blackbear1, rect_ice)
+                    check_rect_collide1(rect_blackbear1, rect_donuts)
+                    check_rect_collide2(rect_blackbear1, rect_macaron) 
+                    
                     if deadthing1 == 3:
                         win.fill((255, 255, 255))
                         pygame.display.update()
@@ -156,16 +174,24 @@ def main():
                   
             elif round == 2:
                 if life2 == True:
+                    win.fill((255, 255, 255))   
+                    round_surface = head_font.render('Round2', True, (0, 0, 0))  
+                    win.blit(round_surface, (300, 100))   
+                    pygame.display.update()  
+                    pygame.time.wait(1000)
+                    
                     if x3 < 50 or x3 > 750:
                         x3 = 700
                     if y3 < 50 or y3 > 550:
                         y3 = 50                    
+                    
                     win.fill((255, 255, 255))
                     win.blit(blackbear2, (x5, y5))
-                    win.blit(dessert[3], dessert_xy[3])
+                    win.blit(cake, (x3, y3))
                     pygame.display.update()
                     pygame.time.wait(500)
-                    check_rect_collide1(rect_blackbear2, dessert_box[3])
+                    check_rect_collide3(rect_blackbear2, rect_cake)
+                    
                     if deadthing2 == 1:
                         win.fill((255, 255, 255))
                         pygame.display.update()
