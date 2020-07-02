@@ -3,14 +3,20 @@ import pygame as pygame
 from pygame.locals import QUIT
 from pygame.locals import *
 
-
+round = 1
+life1 = True
+life2 = True
+deadthing1 = 0
+deadthing2 = 0
+End = False
+end = 0
 
 def check_rect_collide0(rect_blackbear1, rect_ice):
     if (rect_blackbear1.bottom > rect_ice.top and 
         rect_blackbear1.top < rect_ice.bottom and 
         rect_blackbear1.right > rect_ice.left and 
         rect_blackbear1.left < rect_ice.right):
-        return deadthing1+1 and dessert.remove(ice)
+        return deadthing1+1 and dice()
     return null
     
 def check_rect_collide1(rect_blackbear1, rect_donuts):
@@ -18,7 +24,7 @@ def check_rect_collide1(rect_blackbear1, rect_donuts):
         rect_blackbear1.top < rect_donuts.bottom and 
         rect_blackbear1.right > rect_donuts.left and 
         rect_blackbear1.left < rect_donuts.right):
-        return deadthing1+1 and dessert.remove(donuts)
+        return deadthing1+1 and ddonuts()
     return null
 
 def check_rect_collide2(rect_blackbear1, rect_macaron):
@@ -26,7 +32,7 @@ def check_rect_collide2(rect_blackbear1, rect_macaron):
         rect_blackbear1.top < rect_macaron.bottom and 
         rect_blackbear1.right > rect_macaron.left and 
         rect_blackbear1.left < rect_macaron.right):
-        return deadthing1+1 and dessert.remove(macaron)
+        return deadthing1+1 and dmacaron()
     return null
 
 def check_rect_collide3(rect_blackbear2, rect_cake):
@@ -34,8 +40,20 @@ def check_rect_collide3(rect_blackbear2, rect_cake):
         rect_blackbear2.top < rect_cake.bottom and 
         rect_blackbear2.right > rect_cake.left and 
         rect_blackbear2.left < rect_cake.right):
-        return deadthing2+1 and dessert.remove(cake)
+        return deadthing2+1 and dcake()
     return null  
+
+def dice():
+    del ice
+
+def ddonuts():
+    del donuts
+
+def dmacaron():
+    del macaron
+
+def dcake():
+    del cake
 
 def main():
     pygame.init()
@@ -54,13 +72,7 @@ def main():
     win.blit(round_surface, (300, 250))   
     pygame.display.update()  
     pygame.time.wait(1000)
-    round = 1
-    life1 = True
-    life2 = True
-    deadthing1 = 0
-    deadthing2 = 0
-    End = False
-    end = 0
+
     
     ice = pygame.image.load("resources/png/ice.png")
     ice.convert()
